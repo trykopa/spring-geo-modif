@@ -16,6 +16,22 @@
                 Курс евро к гривне на <div class="lead" id="date">...</div>
             </p>
         </div>
+        <div class="row justify-content-md-center">
+            <label for="method">Выберите валюту из списка</label>
+        </div>
+        <div class="row justify-content-md-center">
+            <select id="method" name="method" class="form-control" style="width: 200px;">
+                <option value="">Please select</option>
+                <option value="usd">USD</option>
+                <option value="uah">UAH</option>
+                <option value="uah">GBP</option>
+                <option value="uah">CHF</option>
+            </select>
+
+        </div>
+        <div class="row justify-content-md-center">
+            <label id="cur-label" for="method" ></label>
+        </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -23,5 +39,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script src="/js/main.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.getJSON('/rate', function(data) {
+                $('#method').change(
+                    function () {
+                        var cur = $('option:selected', this).text();
+                        if (cur == "USD") {
+                            $('#cur-label').text(data.rates.USD + " USD за 1 EUR");
+                        } else if (cur == "UAH") {
+                            $('#cur-label').text(data.rates.UAH + " UAH за 1 EUR");
+                        } else if (cur == "GBP") {
+                            $('#cur-label').text(data.rates.GBP + " GBP за 1 EUR");
+                        } else if (cur == "CHF") {
+                            $('#cur-label').text(data.rates.CHF + " CHF за 1 EUR");
+                        }
+                    });
+            });
+        });
+    </script>
 </body>
 </html>

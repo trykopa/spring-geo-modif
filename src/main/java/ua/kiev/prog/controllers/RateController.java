@@ -15,7 +15,8 @@ public class RateController {
     private final GeoRetriever geoRetriever;
     private final LocationService locationService;
 
-    public RateController(RateRetriever rateRetriever, GeoRetriever geoRetriever, LocationService locationService) {
+    public RateController(RateRetriever rateRetriever, GeoRetriever geoRetriever,
+                          LocationService locationService) {
         this.rateRetriever = rateRetriever;
         this.geoRetriever = geoRetriever;
         this.locationService = locationService;
